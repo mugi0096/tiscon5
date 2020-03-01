@@ -13,7 +13,7 @@
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
-    <form th:action="@{/submitEstimate}" th:object="${estimateOrderForm}" class="form-horizontal" method="post">
+    <form th:action="@{/submitEstimate}" th:object="${estimateOrderForm}" class="form-horizontal" method="post" id="estimateForm">
         <h1>お見積り情報入力</h1>
         <div class="col-sm-12">
             <fieldset>
@@ -72,6 +72,11 @@
             </fieldset>
             <div class="form-group">
                 <div class="text-center">
+                    <h2>概算お見積り結果は<span id="estimatePrice">0</span>円です。</h2>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="text-center">
                     <button type="submit" name="backToTop" class="btn btn-primary">TOPへ戻る</button>
                     <button type="submit" name="confirm" class="btn btn-primary">確認</button>
                 </div>
@@ -83,5 +88,39 @@
 <script src="../js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
 <script src="../js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
 <script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const form = document.querySelector('#estimateForm');
+
+    const submitEstimate = async (event) => {
+                const params = new URLSearchParams();
+                for (var i = 0; i < form.elements.length; i++) {
+                    const element = form.elements[i];
+                    if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+                        params.append(element.name, element.value);
+                    }
+                }
+
+                try {
+                    const response = await fetch('/submitEstimate?' + params.toString());
+                    if (response.ok) {
+                        const result = await response.json();
+                        document.querySelector('#estimatePrice').innerHTML = result.price;
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            };
+
+    for (var i = 0; i < form.elements.length; i++) {
+        const element = form.elements[i];
+        if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+            element.addEventListener('change', submitEstimate, false);
+        }
+    }
+
+}, false);
+</script>
 </body>
 </html>

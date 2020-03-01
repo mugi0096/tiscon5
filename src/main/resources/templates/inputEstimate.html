@@ -115,7 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     for (var i = 0; i < form.elements.length; i++) {
         const element = form.elements[i];
-        if (element.tagName === 'INPUT' || element.tagName === 'SELECT') {
+        if (element.tagName === 'INPUT') {
+            element.addEventListener('keyup', submitEstimate, false);
+        }
+        if (element.tagName === 'SELECT') {
             element.addEventListener('change', submitEstimate, false);
         }
     }

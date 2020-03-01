@@ -22,7 +22,7 @@
           <label for="customerName">氏名</label>
           <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control"
                  th:classappend="${#fields.hasErrors('customerName')}? 'is-invalid'"
-                 value="山田太郎"/>
+                 value="山田太郎" placeholder="山田太郎"/>
           <span th:if="${#fields.hasErrors('customerName')}" class="text-danger" th:errors="*{customerName}">Error</span>
 
         </div>
@@ -30,7 +30,7 @@
           <label for="tel">連絡先TEL</label>
           <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control"
                  th:classappend="${#fields.hasErrors('tel')}? 'is-invalid'"
-                 value="03-1234-5678"/>
+                 value="03-1234-5678" placeholder="03-1234-5678"/>
           <span th:if="${#fields.hasErrors('tel')}" class="text-danger" th:errors="*{tel}">Error</span>
 
         </div>
@@ -38,7 +38,7 @@
           <label for="email">連絡先メールアドレス</label>
           <input type="text" id="email" name="email" th:field="*{email}" class="form-control"
                  th:classappend="${#fields.hasErrors('email')}? 'is-invalid'"
-                 value="test@test.com"/>
+                 value="test@test.com" placeholder="test@test.com"/>
           <span th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}">Error</span>
 
         </div>
@@ -52,7 +52,7 @@
         <div class="form-group">
           <label for="oldAddress">転居元住所（市区町村以下）</label>
           <input type="text" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
-                 class="form-control"  th:classappend="${#fields.hasErrors('oldAddress')}? 'is-invalid'"value="新宿区西新宿1-1-1"/>
+                 class="form-control"  th:classappend="${#fields.hasErrors('oldAddress')}? 'is-invalid'"value="新宿区西新宿1-1-1" placeholder="札幌市南区1"/>
           <span th:if="${#fields.hasErrors('oldAddress')}" class="text-danger" th:errors="*{oldAddress}">Error</span>
 
         </div>
@@ -66,7 +66,7 @@
         <div class="form-group">
           <label for="newAddress">転居先住所（市区町村以下）</label>
           <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control" th:classappend="${#fields.hasErrors('newAddress')}? 'is-invalid'"
-                 value="札幌市南区1"/>
+                 value="札幌市南区1" placeholder="札幌市南区2"/>
           <span th:if="${#fields.hasErrors('newAddress')}" class="text-danger" th:errors="*{newAddress}">Error</span>
 
         </div>
@@ -75,26 +75,26 @@
         <legend>荷物情報</legend>
         <div class="form-group">
           <label for="box">段ボールの個数</label>
-          <input type="text" id="box" name="box" th:field="*{box}" class="form-control"  th:classappend="${#fields.hasErrors('box')}? 'is-invalid'"value="10"/>
+          <input type="text" id="box" name="box" th:field="*{box}" class="form-control"  th:classappend="${#fields.hasErrors('box')}? 'is-invalid'" value="10" placeholder="10"/>
           <span th:if="${#fields.hasErrors('box')}" class="text-danger" th:errors="*{box}">Error</span>
 
         </div>
         <div class="form-group">
           <label for="bed">ベッドの個数</label>
-          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" th:classappend="${#fields.hasErrors('bed')}? 'is-invalid'" value="3"/>
+          <input type="text" id="bed" name="bed" th:field="*{bed}" class="form-control" th:classappend="${#fields.hasErrors('bed')}? 'is-invalid'" value="3" placeholder="3"/>
           <span th:if="${#fields.hasErrors('bed')}" class="text-danger" th:errors="*{bed}">Error</span>
 
         </div>
         <div class="form-group">
           <label for="bicycle">自転車の個数</label>
-          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" th:classappend="${#fields.hasErrors('bicycle')}? 'is-invalid'" value="1"/>
+          <input type="text" id="bicycle" name="bicycle" th:field="*{bicycle}" class="form-control" th:classappend="${#fields.hasErrors('bicycle')}? 'is-invalid'" value="1" placeholder="1"/>
           <span th:if="${#fields.hasErrors('bicycle')}" class="text-danger" th:errors="*{bicycle}">Error</span>
 
         </div>
         <div class="form-group">
           <label for="washingMachine">洗濯機の個数</label>
           <input type="text" id="washingMachine" name="washingMachine" th:field="*{washingMachine}" class="form-control" th:classappend="${#fields.hasErrors('washingMachine')}? 'is-invalid'"
-                 value="1"/>
+                 value="1" placeholder="1"/>
           <span th:if="${#fields.hasErrors('washingMachine')}" class="text-danger" th:errors="*{washingMachine}">Error</span>
 
         </div>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>お見積り情報入力</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{http://fonts.googleapis.com/css?family=Exo:900}"
+          href="http://fonts.googleapis.com/css?family=Exo:900"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" href="../static/css/main.css">
+</head>
+
+<body>
+<nav th:insert="header.html :: header"></nav>
+<div class="container">
+    <form th:action="@{/submitPrivate}" th:object="${privateOrderForm}" class="form-horizontal" method="post">
+        <h1>お見積り情報入力</h1>
+        <div class="col-sm-12">
+            <fieldset>
+                <legend>個人情報</legend>
+                <div class="form-group">
+                    <label for="customerName">氏名</label>
+                    <input type="text" id="customerName" name="customerName" th:field="*{customerName}" class="form-control"
+                           th:classappend="${#fields.hasErrors('customerName')}? 'is-invalid'"
+                           value="山田太郎" placeholder="山田太郎"/>
+                    <span th:if="${#fields.hasErrors('customerName')}" class="text-danger" th:errors="*{customerName}">Error</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="tel">連絡先TEL</label>
+                    <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control"
+                           th:classappend="${#fields.hasErrors('tel')}? 'is-invalid'"
+                           value="0312345678" placeholder="0312345678"/>
+                    <span th:if="${#fields.hasErrors('tel')}" class="text-danger" th:errors="*{tel}">Error</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="email">連絡先メールアドレス</label>
+                    <input type="text" id="email" name="email" th:field="*{email}" class="form-control"
+                           th:classappend="${#fields.hasErrors('email')}? 'is-invalid'"
+                           value="test@test.com" placeholder="test@test.com"/>
+                    <span th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}">Error</span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="oldAddress">転居元住所（市区町村以下）</label>
+                    <input type="text" id="oldAddress" name="oldAddress" th:field="*{oldAddress}"
+                           class="form-control"  th:classappend="${#fields.hasErrors('oldAddress')}? 'is-invalid'"value="新宿区西新宿1-1-1" placeholder="札幌市南区1"/>
+                    <span th:if="${#fields.hasErrors('oldAddress')}" class="text-danger" th:errors="*{oldAddress}">Error</span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="newAddress">転居先住所（市区町村以下）</label>
+                    <input type="text" id="newAddress" name="newAddress" th:field="*{newAddress}" class="form-control" th:classappend="${#fields.hasErrors('newAddress')}? 'is-invalid'"
+                           value="札幌市南区1" placeholder="札幌市南区2"/>
+                    <span th:if="${#fields.hasErrors('newAddress')}" class="text-danger" th:errors="*{newAddress}">Error</span>
+
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <div class="text-center">
+                    <button type="submit" name="backToConfirmEstimate" class="btn btn-primary">お見積もり情報確認へ戻る</button>
+                    <button type="submit" name="confirmAll" class="btn btn-primary">確認</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script src="../js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+<script src="../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

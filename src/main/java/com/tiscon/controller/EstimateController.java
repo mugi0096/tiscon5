@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author Oikawa Yumi
  */
 @Controller
-@SessionAttributes(types = {EstimateOrderForm.class, PrivateOrderForm.class})
+@SessionAttributes(types = {EstimateOrderForm.class})
 public class EstimateController {
 
     private final EstimateDao estimateDAO;
@@ -70,27 +70,6 @@ public class EstimateController {
     @PostMapping(value = "submitEstimate", params = "backToTop")
     String backToTop(Model model) {
         return "top";
-    }
-
-    /**
-     * 確認画面に遷移する。
-     *
-     * @param userOrderForm 顧客が入力した見積もり依頼情報
-     * @param model         遷移先に連携するデータ
-     * @return 遷移先
-     */
-    @PostMapping(value = "submit", params = "confirm")
-    String confirm(@Validated UserOrderForm userOrderForm, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-
-            model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-            model.addAttribute("userOrderForm", userOrderForm);
-            return "input";
-        }
-
-        model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-        model.addAttribute("userOrderForm", userOrderForm);
-        return "confirm";
     }
 
 
@@ -162,7 +141,13 @@ public class EstimateController {
      */
     @PostMapping(value  ="submitPrivate", params = "confirmAll")
     public String confirmAll(@ModelAttribute("estimateOrderForm") EstimateOrderForm estimateOrderForm,
-                       @ModelAttribute("privateOrderForm") PrivateOrderForm privateOrderForm ,Model model) {
+                       @Validated PrivateOrderForm privateOrderForm , BindingResult result, Model model) {
+        if (result.hasErrors()) {
+
+            model.addAttribute("privateOrderForm", privateOrderForm);
+            return "inputPrivate";
+        }
+
         UserOrderForm userOrderForm = mergeForm(estimateOrderForm ,privateOrderForm);
 
         UserOrderDto dto = new UserOrderDto();

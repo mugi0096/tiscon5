@@ -30,7 +30,7 @@
                     <label for="tel">連絡先TEL</label>
                     <input type="tel" id="tel" name="tel" th:field="*{tel}" class="form-control"
                            th:classappend="${#fields.hasErrors('tel')}? 'is-invalid'"
-                           value="03-1234-5678" placeholder="03-1234-5678"/>
+                           value="0312345678" placeholder="0312345678"/>
                     <span th:if="${#fields.hasErrors('tel')}" class="text-danger" th:errors="*{tel}">Error</span>
 
                 </div>

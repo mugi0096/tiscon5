@@ -13,7 +13,7 @@
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
-    <form th:action="@{/submitEstimate}" th:object="${userOrderForm}" class="form-horizontal" method="post">
+    <form th:action="@{/submitEstimate}" th:object="${estimateOrderForm}" class="form-horizontal" method="post">
         <h1>お見積り情報入力</h1>
         <div class="col-sm-12">
             <fieldset>

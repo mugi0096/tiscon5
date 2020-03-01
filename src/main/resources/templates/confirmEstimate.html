@@ -13,12 +13,13 @@
 <body>
 <nav th:insert="header.html :: header"></nav>
 <div class="container">
-    <form th:action="@{/resultEstimate}" th:object="${userOrderForm}" class="form-horizontal" method="post">
+    <form th:action="@{/resultEstimate}" th:object="${estimateOrderForm}" class="form-horizontal" method="post">
         <h1>お見積り情報確認</h1>
-        <!-- <ul th:if="${#fields.hasErrors('all')}">
+        <ul th:if="${#fields.hasErrors('all')}">
             <li th:each="err : ${#fields.errors('all')}" th:text="${err}"></li>
-        </ul> -->
+        </ul>
         <div class="col-sm-12">
+            <h2>概算お見積り結果は<span th:text="${price}"></span>円です。</h2>
             <h4>都道府県</h4>
             <table class="table table-bordered">
                 <col span="1" style="background-color: #A9B7C7;">

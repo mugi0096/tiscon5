@@ -53,7 +53,7 @@ public class EstimateController {
         }
 
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
-        return "input";
+        return "inputEstimate";
     }
 
     /**
@@ -62,7 +62,7 @@ public class EstimateController {
      * @param model 遷移先に連携するデータ
      * @return 遷移先
      */
-    @PostMapping(value = "submit", params = "backToTop")
+    @PostMapping(value = "submitEstimate", params = "backToTop")
     String backToTop(Model model) {
         return "top";
     }
@@ -86,6 +86,27 @@ public class EstimateController {
         model.addAttribute("prefectures", estimateDAO.getAllPrefectures());
         model.addAttribute("userOrderForm", userOrderForm);
         return "confirm";
+    }
+
+
+    /**
+     * 見積もり確認画面に遷移する。
+     *
+     * @param
+     */
+    @PostMapping(value = "submitEstimate", params = "confirm")
+    String confirmEstimate(Model model) {
+        return "confirmEstimate";
+    }
+
+    /**
+     * 見積もり情報入力画面に戻る
+     *
+     *
+     */
+    @PostMapping(value = "resultEstimate", params = "backToInput")
+    String backToInputEstimate(Model model) {
+        return "inputEstimate";
     }
 
     /**
